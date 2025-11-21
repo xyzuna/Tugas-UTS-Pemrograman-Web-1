@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kanji N5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Dark Mode -->
+<button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+
+<header class="header">
+    <h1>Detail Kanji N5</h1>
+    <nav>
+        <a href="index.html">🏠 Kembali ke Beranda</a>
+    </nav>
+</header>
+
+<section class="detail-container">
+    <h2>Kanji N5 - Daftar Detail</h2>
+
+    <div class="kanji-item">
+        <div class="kanji-symbol">日</div>
+        <div class="kanji-info">
+            <h3>日 (Hi / Ni / Bi)</h3>
+            <p>Arti: Matahari, Hari</p>
+            <p>Kunyomi: ひ(hi), び(bi)</p>
+            <p>Onyomi: に(ni), にち(nichi)</p>
+        </div>
+    </div>
+
+    <div class="kanji-item">
+        <div class="kanji-symbol">人</div>
+        <div class="kanji-info">
+            <h3>人 (Hito / Jin)</h3>
+            <p>Arti: Orang, Manusia</p>
+            <p>Kunyomi: ひと(hito)</p>
+            <p>Onyomi: じん(jin), にん(nin)</p>
+        </div>
+    </div>
+
+    <div class="kanji-item">
+        <div class="kanji-symbol">大</div>
+        <div class="kanji-info">
+            <h3>大 (Dai / Oo)</h3>
+            <p>Arti: Besar</p>
+            <p>Kunyomi: おお(oo)</p>
+            <p>Onyomi: だい(dai), たい(tai)</p>
+        </div>
+    </div>
+
+    <!-- LATIHAN MENULIS -->
+    <h2>Latihan Menulis Kanji</h2>
+
+    <div class="write-area">
+        <canvas id="kanjiCanvas" width="300" height="300"></canvas>
+
+        <div class="write-controls">
+            <button onclick="clearCanvas()">🧹 Hapus</button>
+            <button onclick="saveDrawing()">💾 Simpan Hasil</button>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT                                            -->
+<!-- ===================================================== -->
+
+<script>
+// ==== Canvas Menulis ====
+
+const canvas = document.getElementById("kanjiCanvas");
+const ctx = canvas.getContext("2d");
+let drawing = false;
+
+canvas.addEventListener("mousedown", () => (drawing = true));
+canvas.addEventListener("mouseup", () => (drawing = false));
+canvas.addEventListener("mouseleave", () => (drawing = false));
+canvas.addEventListener("mousemove", draw);
+
+function draw(e) {
+    if (!drawing) return;
+
+    ctx.fillStyle = "#111";
+    ctx.beginPath();
+    ctx.arc(e.offsetX, e.offsetY, 4, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function saveDrawing() {
+    const dataUrl = canvas.toDataURL();
+    localStorage.setItem("kanjiDrawing", dataUrl);
+    alert("Gambar latihan berhasil disimpan!");
+}
+
+
+// ==== Dark Mode ====
+
+const toggleBtn = document.getElementById("themeToggle");
+const body = document.body;
+
+toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+
+    toggleBtn.textContent = body.classList.contains("dark-mode")
+        ? "☀ Light Mode"
+        : "🌙 Dark Mode";
+});
+</script>
+
+</body>
+</html>

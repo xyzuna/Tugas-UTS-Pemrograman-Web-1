@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Utama — Sakura Nihongo Lab</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-base: #f7f4f2;
+      --panel: rgba(255,255,255,0.50);
+      --accent: #f6c7d9;
+      --accent-2: #d2c6e8;
+      --muted: #8b7f89;
+      --glass-blur: 12px;
+      --radius: 18px;
+      --text: #222;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family:'Nunito','Noto Sans JP',sans-serif;
+      background:var(--bg-base);
+      min-height:100vh;
+      overflow-x:hidden;
+      color:var(--text);
+    }
+
+    /* Background Video */
+    .bg-video{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-2;
+      filter:brightness(0.88);
+    }
+
+    .bg-overlay{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,0.25),rgba(248,244,245,0.35));
+      backdrop-filter: blur(3px);
+      z-index:-1;
+    }
+
+    /* Header */
+    .header{
+      width:100%;
+      padding:20px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(255,255,255,0.40);
+      backdrop-filter:blur(8px);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .logo{
+      font-size:26px;
+      font-weight:700;
+      font-family:'Noto Sans JP';
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .logout-btn{
+      padding:8px 18px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      background:var(--accent);
+      font-weight:700;
+    }
+
+    .logout-btn:hover{
+      filter:brightness(1.05);
+    }
+
+    /* Main Menu Container */
+    .menu-container{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+      text-align:center;
+    }
+
+    .title-jp{
+      font-size:28px;
+      font-family:'Noto Sans JP';
+      letter-spacing:4px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:0;
+    }
+
+    h2{
+      margin-top:6px;
+      font-size:30px;
+      font-weight:700;
+    }
+
+    /* Cards Menu */
+    .menu-grid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:26px;
+    }
+
+    .menu-card{
+      padding:28px;
+      background:var(--panel);
+      border-radius:var(--radius);
+      backdrop-filter:blur(var(--glass-blur));
+      box-shadow:0 8px 30px rgba(0,0,0,0.06);
+      transition:0.25s ease;
+      cursor:pointer;
+    }
+
+    .menu-card:hover{
+      transform:translateY(-6px);
+      filter:brightness(1.03);
+    }
+
+    .menu-card h3{
+      margin-top:0;
+      font-size:20px;
+      margin-bottom:10px;
+    }
+
+    .menu-card p{
+      color:var(--muted);
+      font-size:15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="sakura.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">桜 Sakura Lab</div>
+    <button class="logout-btn" onclick="window.location.href='login.html'">Logout</button>
+  </header>
+
+  <!-- Main Menu -->
+  <div class="menu-container">
+    
+    <div class="title-jp">メインメニュー</div>
+    <h2>Menu Utama</h2>
+
+    <div class="menu-grid">
+
+      <div class="menu-card" onclick="location.href='informasi.html'">
+        <h3>📄 Informasi Perusahaan</h3>
+        <p>Lihat seluruh ringkasan & detail informasi perusahaan.</p>
+      </div>
+
+      <div class="menu-card" onclick="location.href='profil.html'">
+        <h3>👤 Profil Akun</h3>
+        <p>Atur profil, email, dan keamanan akun Anda.</p>
+      </div>
+
+      <div class="menu-card" onclick="location.href='fitur-lain.html'">
+        <h3>✨ Fitur Tambahan</h3>
+        <p>Akses fitur khusus lainnya dalam sistem.</p>
+      </div>
+
+      <div class="menu-card" onclick="location.href='about.html'">
+        <h3>🏯 Tentang Aplikasi</h3>
+        <p>Pelajari tujuan dan informasi pengembang.</p>
+      </div>
+
+    </div>
+  
+  </div>
+
+</body>
+</html>
